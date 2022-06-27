@@ -28,7 +28,7 @@ class HomeView extends GetView<HomeController> {
                       )),
               dropdownDecoratorProps: DropDownDecoratorProps(
                 dropdownSearchDecoration: InputDecoration(
-                  labelText: "Pilih Provinsinya",
+                  labelText: "Pilih Provinsi",
                   contentPadding: EdgeInsets.all(20),
                   border: OutlineInputBorder(),
                 ),
@@ -149,7 +149,7 @@ class HomeView extends GetView<HomeController> {
                 ),
               ),
               dropdownBuilder: (context, itemSelect) =>
-                  Text("${itemSelect?['name'] ?? 'Pilih Kurirnya'}"),
+                  Text("${itemSelect?['name'] ?? 'Pilih Kurir'}"),
               onChanged: (e) => controller.pilihKurir.value = e?['code'] ?? "",
             ),
             SizedBox(height: 20),
