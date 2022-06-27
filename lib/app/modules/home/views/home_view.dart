@@ -28,7 +28,7 @@ class HomeView extends GetView<HomeController> {
                       )),
               dropdownDecoratorProps: DropDownDecoratorProps(
                 dropdownSearchDecoration: InputDecoration(
-                  labelText: "Pilih Provinsi",
+                  labelText: "Pilih Provinsinya",
                   contentPadding: EdgeInsets.all(20),
                   border: OutlineInputBorder(),
                 ),
