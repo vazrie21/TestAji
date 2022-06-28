@@ -1,7 +1,10 @@
+// ignore_for_file: prefer_const_constructors, unused_import
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:get/get.dart';
+import 'package:get_ongkir/app/routes/app_pages.dart';
 
 import '../controllers/home_controller.dart';
 import '../../../data/models/city_model.dart';
@@ -41,8 +44,8 @@ class HomeView extends GetView<HomeController> {
                 return Province.fromJsonList(
                     response.data["rajaongkir"]["results"]);
               },
-              onChanged: (val) =>
-                  controller.provAsal.value = val?.provinceId ?? "0",
+              // onChanged: (val) =>
+              //     controller.provAsal.value = val?.provinceId ?? "0",
             ),
             SizedBox(height: 20),
             DropdownSearch<City>(
@@ -174,6 +177,10 @@ class HomeView extends GetView<HomeController> {
                 child: Text(controller.isLoading.isFalse
                     ? "Cek Ongkir"
                     : "Loading..."))),
+            SizedBox(height: 30),
+            ElevatedButton(
+                onPressed: () => Get.toNamed(Routes.PAGE1),
+                child: Text("Masuk Page 1")),
           ],
         ));
   }
