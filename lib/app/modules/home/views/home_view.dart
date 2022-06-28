@@ -173,7 +173,7 @@ class HomeView extends GetView<HomeController> {
                 },
                 child: Text(controller.isLoading.isFalse
                     ? "Cek Ongkir"
-                    : "Loading...!!"))),
+                    : "Loading..."))),
           ],
         ));
   }
