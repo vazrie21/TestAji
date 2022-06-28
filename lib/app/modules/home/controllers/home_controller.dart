@@ -27,7 +27,7 @@ class HomeController extends GetxController {
   RxString pilihKurir = "".obs;
   TextEditingController beratBarang = TextEditingController();
 
-  RxBool isLoading = true.obs;
+  RxBool isLoading = false.obs;
 
   List<Ongkir> ongkir = [];
 
