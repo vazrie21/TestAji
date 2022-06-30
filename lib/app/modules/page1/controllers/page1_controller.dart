@@ -1,3 +1,7 @@
+import 'dart:developer';
+// import 'dart:js';
+
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Page1Controller extends GetxController {
@@ -68,9 +72,62 @@ class Page1Controller extends GetxController {
     }
   ];
 
-  Map<String, dynamic> promoDiPilih = {};
+  final promoDiPilih = ''.obs;
 
-  void test() {
-    print(dataCart);
+  final promoDiPilihL = <String, int>{}.obs;
+
+  List<Widget> test() {
+    List items = [
+      {
+        "nama": "Promo 1",
+        "ket": "Keterangan Promo",
+      },
+      {
+        "nama": "Promo 2",
+        "ket": "Keterangan Promo",
+      },
+      {
+        "nama": "Promo 3",
+        "ket": "Keterangan Promo",
+      },
+    ];
+
+    var children = <Widget>[];
+    children.add(const Center(
+      child: Padding(
+        padding: EdgeInsets.all(20.0),
+        child: Text(
+          'Promo',
+          style: TextStyle(fontSize: 18),
+        ),
+      ),
+    ));
+
+    var hitung = items.length;
+
+    for (var i = 0; i < hitung; i++) {
+      // ignore: unnecessary_new
+      children.add(new Container(
+          color: Color.fromARGB(0, 255, 255, 255),
+          child: ListTile(
+            title: Text("Promo ${items[i]['nama']}"),
+            subtitle: Text("${items[i]['ket']}"),
+            leading: const Icon(
+              Icons.sell_outlined,
+            ),
+            minLeadingWidth: 10,
+            trailing: const Icon(Icons.more_vert),
+            onTap: () {
+              Get.back();
+              print(hitung);
+              // promoDiPilih.value = '';
+              promoDiPilih.value = items[i]['nama'].toString();
+              // update();
+              print(promoDiPilih);
+            },
+          )));
+    }
+
+    return children;
   }
 }

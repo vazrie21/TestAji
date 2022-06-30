@@ -1,11 +1,13 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, unused_import, unnecessary_import
 
 import 'dart:developer';
+// import 'dart:js';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:flutter/rendering.dart';
 
 import 'package:get/get.dart';
 
@@ -22,10 +24,10 @@ class Page1View extends GetView<Page1Controller> {
         centerTitle: true,
       ),
       body: ListView(
-        // ignore: prefer_const_constructors
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
         children: [
           DropdownSearch<Map<String, dynamic>>(
+            // ignore: prefer_const_literals_to_create_immutables
             items: [
               {
                 "nama": "Promo 1",
@@ -40,7 +42,6 @@ class Page1View extends GetView<Page1Controller> {
                 "ket": "Keterangan Promo",
               },
             ],
-            // ignore: prefer_const_constructors
             popupProps: PopupProps.menu(
               // showSearchBox: true,
               itemBuilder: (b, c, a) => ListTile(
@@ -48,7 +49,6 @@ class Page1View extends GetView<Page1Controller> {
                 subtitle: Text("${c['ket']}"),
               ),
             ),
-
             dropdownDecoratorProps: const DropDownDecoratorProps(
               dropdownSearchDecoration: InputDecoration(
                 fillColor: Color.fromARGB(227, 77, 36, 3),
@@ -70,11 +70,87 @@ class Page1View extends GetView<Page1Controller> {
             dropdownBuilder: (context, itemSelect) =>
                 Text("${itemSelect?['nama'] ?? 'Pilih Promo'}"),
             onChanged: (a) {
-              controller.promoDiPilih = a!;
+              controller.promoDiPilih.value = a!['nama'];
               print(controller.promoDiPilih);
               print(controller.dataCart);
             },
           ),
+          SizedBox(
+            height: 20,
+          ),
+          TextButton(
+            style: ButtonStyle(
+              // alignment: Alignment.centerLeft,
+              backgroundColor: MaterialStateProperty.all(Colors.white70),
+              foregroundColor:
+                  MaterialStateProperty.all<Color>(Colors.brown.shade800),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50),
+                  side: BorderSide(color: Colors.brown.shade800),
+                ),
+              ),
+            ),
+            onPressed: () {
+              Get.bottomSheet(
+                shape: RoundedRectangleBorder(
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(15),
+                    topRight: Radius.circular(15),
+                  ),
+                ),
+                backgroundColor: Colors.white,
+                // ignore: unnecessary_new
+                new Container(
+                  height: 300,
+                  // color: Colors.yellow,
+                  child: ListView(
+                    children: controller.test(),
+                  ),
+                ),
+              );
+            },
+            // icon: Icon(Icons.arrow_drop_down),
+            // ignore: avoid_unnecessary_containers
+            child: Container(
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                // alignment: Alignment.center,
+                children: [
+                  Icon(
+                    Icons.sell_outlined,
+                    size: 24.0,
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 15,
+                    ),
+                    alignment: Alignment.centerLeft,
+                    child: Obx(
+                      () => controller.promoDiPilih.isEmpty
+                          ? Text(
+                              'Pilih Promo',
+                            )
+                          : Text(
+                              controller.promoDiPilih.value,
+                            ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.centerRight,
+                      child: Icon(
+                        Icons.arrow_drop_down,
+                        size: 24.0,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );
