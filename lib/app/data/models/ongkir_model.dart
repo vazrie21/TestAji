@@ -27,7 +27,7 @@ class Ongkir {
   }
 
   static List<Ongkir> fromJsonList(List? data) {
-    if (data == null || data.length == 0) return [];
+    if (data == null || data.isEmpty) return [];
     return data.map((e) => Ongkir.fromJson(e)).toList();
   }
 }
@@ -54,7 +54,7 @@ class Cost {
   }
 
   static List<Cost> fromJsonList(List? data) {
-    if (data == null || data.length == 0) return [];
+    if (data == null || data.isEmpty) return [];
     return data.map((e) => Cost.fromJson(e)).toList();
   }
 }

@@ -3,6 +3,7 @@
 import 'dart:developer';
 // import 'dart:js';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -151,6 +152,28 @@ class Page1View extends GetView<Page1Controller> {
               ),
             ),
           )
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        // onTap: controller.changeTabIndex,
+        // currentIndex: controller.tabIndex,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.sportscourt),
+            label: 'News',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.bell),
+            label: 'Alerts',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.person),
+            label: 'Account',
+          ),
         ],
       ),
     );
